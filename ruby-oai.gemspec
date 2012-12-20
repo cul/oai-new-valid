@@ -6,16 +6,18 @@ Gem::Specification.new do |s|
     s.homepage = 'http://github.com/code4lib/ruby-oai'
     s.platform = Gem::Platform::RUBY
     s.summary = 'A ruby library for working with the Open Archive Initiative Protocol for Metadata Harvesting (OAI-PMH)'
-    s.require_path = 'lib'
+    s.require_paths = ["lib"]
     s.autorequire = 'oai'
     s.bindir = 'bin'
-    s.executables = 'oai'
+    s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
     s.add_dependency('builder', '>=2.0.0')
     s.add_dependency('faraday')
     s.add_dependency('faraday_middleware')
 
-    s.files = %w(README.md Rakefile) +
-      Dir.glob("{bin,test,lib}/**/*") +
-      Dir.glob("examples/**/*.rb")
+    s.files         = `git ls-files`.split("\n")
 end
+
+ 
+
+
