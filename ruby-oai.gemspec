@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
     s.platform = Gem::Platform::RUBY
     s.summary = 'A ruby library for working with the Open Archive Initiative Protocol for Metadata Harvesting (OAI-PMH)'
     s.require_paths = ["lib"]
-#    s.autorequire = 'oai'
+    s.autorequire = 'oai'
 #    s.bindir = 'bin'
     s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
