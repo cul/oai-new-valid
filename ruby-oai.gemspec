@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
     s.summary = 'A ruby library for working with the Open Archive Initiative Protocol for Metadata Harvesting (OAI-PMH)'
     s.require_paths = ["lib"]
     s.autorequire = 'oai'
-#    s.bindir = 'bin'
+    s.bindir = 'bin'
     s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
     s.add_dependency('builder', '>=2.0.0')
