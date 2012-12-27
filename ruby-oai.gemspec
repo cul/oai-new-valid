@@ -9,7 +9,6 @@ Gem::Specification.new do |s|
     s.require_paths = ["lib"]
     s.autorequire = 'oai'
     s.bindir = 'bin'
-    s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
     s.add_dependency('builder', '>=2.0.0')
     s.add_dependency('faraday')
