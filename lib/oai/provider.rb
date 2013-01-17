@@ -1,6 +1,8 @@
 require 'rexml/document'
 require 'singleton'
 require 'builder'
+require 'time'
+
 
 if not defined?(OAI::Const::VERBS)
   require 'oai/exception'
@@ -340,18 +342,6 @@ module OAI::Provider
       parse_date(opts[:until]) if opts[:until]
 
 
-      # require that request is for no earlier than earliest timestamp (an OAI v.2 requirement)
-      #      earliest_timestamp = OAI::Provider::ActiveRecordWrapper.earliest
-
-      if(opts[:until])
-        earliest_timestamp = self.class.model.earliest
-        edate = parse_date(earliest_timestamp.to_s)
-        fdate = parse_date(opts[:until])
-        if(fdate < edate)
-            raise OAI::NoMatchException.new
-        end
-      end 
-
      #a rudimentary check that the date strings submitted are the same granularity (an OAI v.2 requirement)
 
      if(opts[:from] && opts[:until])
@@ -362,6 +352,21 @@ module OAI::Provider
                raise OAI::ArgumentException.new
      	  end
      end
+
+
+      # require that request is for no earlier than earliest timestamp (an OAI v.2 requirement)
+      #      earliest_timestamp = OAI::Provider::ActiveRecordWrapper.earliest
+
+       if(opts[:until] && !opts[:resumptionToken])
+         earliest_timestamp = self.class.model.earliest
+         time = Time.parse(earliest_timestamp.to_s)
+         reformat_early = time.strftime("%Y-%m-%d")
+         edate = parse_date(reformat_early.to_s)
+         fdate = parse_date(opts[:until])
+         if(fdate < edate)
+             raise OAI::NoMatchException.new
+         end
+       end
 
     end
 
