@@ -91,7 +91,10 @@ module OAI::Provider
       encoded_token << ".s(#{set})" if set
       encoded_token << ".f(#{self.from.utc.xmlschema})" if self.from
       encoded_token << ".u(#{self.until.utc.xmlschema})" if self.until
+      #last is empty string when we have an empty resumption record
+      if(last != '')
       encoded_token << ":#{last}"
+      end
     end
 
     def hash_of_attributes
