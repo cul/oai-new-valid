@@ -329,7 +329,7 @@ module OAI
                              | ([\xC0\xC1]|[\xF0-\xFF])[\x80-\xBF]*
                              | [\xC2-\xDF]((?![\x80-\xBF])|[\x80-\xBF]{2,})
                              | [\xE0-\xEF](([\x80-\xBF](?![\x80-\xBF]))
-                             | (?![\x80-\xBF]{2})|[\x80-\xBF]{3,})/x, '?')\
+                             | (?![\x80-\xBF]{2})|[\x80-\xBF]{3,})\x, '?')\
                 .gsub(/\xE0[\x80-\x9F][\x80-\xBF]
                        | \xED[\xA0-\xBF][\x80-\xBF]/,'?')
     end
