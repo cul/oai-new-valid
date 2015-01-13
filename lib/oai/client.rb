@@ -324,14 +324,14 @@ module OAI
     # Regex is from WebCollab:
     #   http://webcollab.sourceforge.net/unicode.html
     def strip_invalid_utf_8_chars(xml)
-      xml && xml.gsub(/[\x00-\x08\x10\x0B\x0C\x0E-\x19\x7F]
-                             | [\x00-\x7F][\x80-\xBF]+
-                             | ([\xC0\xC1]|[\xF0-\xFF])[\x80-\xBF]*
-                             | [\xC2-\xDF]((?![\x80-\xBF])|[\x80-\xBF]{2,})
-                             | [\xE0-\xEF](([\x80-\xBF](?![\x80-\xBF]))
-                             | (?![\x80-\xBF]{2})|[\x80-\xBF]{3,})\x, '?')\
-                .gsub(/\xE0[\x80-\x9F][\x80-\xBF]
-                       | \xED[\xA0-\xBF][\x80-\xBF]/,'?')
+	 #      xml && xml.gsub(/[\x00-\x08\x10\x0B\x0C\x0E-\x19\x7F]
+	#                              | [\x00-\x7F][\x80-\xBF]+
+	#                              | ([\xC0\xC1]|[\xF0-\xFF])[\x80-\xBF]*
+	#                              | [\xC2-\xDF]((?![\x80-\xBF])|[\x80-\xBF]{2,})
+	#                              | [\xE0-\xEF](([\x80-\xBF](?![\x80-\xBF]))
+	#                              | (?![\x80-\xBF]{2})|[\x80-\xBF]{3,})/x, '?')\
+	#                 .gsub(/\xE0[\x80-\x9F][\x80-\xBF]
+	#                        | \xED[\xA0-\xBF][\x80-\xBF]/,'?')
     end
 
   end
